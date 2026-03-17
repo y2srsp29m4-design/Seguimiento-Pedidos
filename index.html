@@ -6,218 +6,85 @@
   <title>Peluche Pollito Kawaii Futbolero — Seguimiento de entrega</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg-primary: #ffffff;
-      --bg-secondary: #f8f7f4;
-      --bg-tertiary: #f1efe8;
-      --text-primary: #1a1a18;
-      --text-secondary: #5f5e5a;
-      --text-tertiary: #888780;
-      --border: rgba(0,0,0,0.12);
-      --border-strong: rgba(0,0,0,0.22);
-      --radius-md: 8px;
-      --radius-lg: 12px;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg-primary: #1c1c1a;
-        --bg-secondary: #242422;
-        --bg-tertiary: #2c2c2a;
-        --text-primary: #e8e6de;
-        --text-secondary: #9c9a92;
-        --text-tertiary: #6e6c65;
-        --border: rgba(255,255,255,0.10);
-        --border-strong: rgba(255,255,255,0.18);
-      }
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 13px;
-      background: var(--bg-tertiary);
-      color: var(--text-primary);
-      min-height: 100vh;
-      padding: 24px 20px;
-    }
-
-    .page {
-      max-width: 1100px;
-      margin: 0 auto;
-      background: var(--bg-primary);
-      border-radius: var(--radius-lg);
-      border: 0.5px solid var(--border);
-      padding: 28px 28px 32px;
-    }
-
-    /* Header */
-    .page-header {
-      display: flex; align-items: flex-start; justify-content: space-between;
-      flex-wrap: wrap; gap: 12px;
-      padding-bottom: 18px;
-      border-bottom: 0.5px solid var(--border);
-      margin-bottom: 18px;
-    }
+    :root { --bg-primary: #ffffff; --bg-secondary: #f8f7f4; --bg-tertiary: #f1efe8; --text-primary: #1a1a18; --text-secondary: #5f5e5a; --text-tertiary: #888780; --border: rgba(0,0,0,0.12); --border-strong: rgba(0,0,0,0.22); --radius-md: 8px; --radius-lg: 12px; }
+    @media (prefers-color-scheme: dark) { :root { --bg-primary: #1c1c1a; --bg-secondary: #242422; --bg-tertiary: #2c2c2a; --text-primary: #e8e6de; --text-secondary: #9c9a92; --text-tertiary: #6e6c65; --border: rgba(255,255,255,0.10); --border-strong: rgba(255,255,255,0.18); } }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; background: var(--bg-tertiary); color: var(--text-primary); min-height: 100vh; padding: 24px 20px; }
+    .page { max-width: 1100px; margin: 0 auto; background: var(--bg-primary); border-radius: var(--radius-lg); border: 0.5px solid var(--border); padding: 28px 28px 32px; }
+    .page-header { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-bottom: 18px; border-bottom: 0.5px solid var(--border); margin-bottom: 18px; }
     .page-header h1 { font-size: 16px; font-weight: 500; }
     .page-header p { font-size: 12px; color: var(--text-secondary); margin-top: 3px; }
     .header-meta { text-align: right; font-size: 11px; color: var(--text-tertiary); }
-
-    /* Summary cards */
+    .auto-badge { display: inline-block; font-size: 10px; padding: 2px 8px; background: #EAF3DE; color: #3B6D11; border-radius: 10px; font-weight: 500; margin-left: 8px; vertical-align: middle; }
+    @media (prefers-color-scheme: dark) { .auto-badge { background: #27500A; color: #C0DD97; } }
     #summary { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
-    .stat-card {
-      flex: 1; min-width: 100px;
-      background: var(--bg-secondary);
-      border-radius: var(--radius-md);
-      padding: 10px 14px;
-    }
+    .stat-card { flex: 1; min-width: 100px; background: var(--bg-secondary); border-radius: var(--radius-md); padding: 10px 14px; }
     .stat-num { font-size: 20px; font-weight: 500; }
     .stat-lbl { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
-
-    /* Toolbar */
-    #toolbar {
-      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
-      margin-bottom: 14px;
-    }
-    .btn {
-      font-size: 12px; padding: 5px 14px;
-      background: var(--bg-secondary);
-      border: 0.5px solid var(--border-strong);
-      border-radius: var(--radius-md);
-      color: var(--text-primary);
-      cursor: pointer;
-    }
+    #toolbar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .btn { font-size: 12px; padding: 5px 14px; background: var(--bg-secondary); border: 0.5px solid var(--border-strong); border-radius: var(--radius-md); color: var(--text-primary); cursor: pointer; }
     .btn:hover { background: var(--bg-tertiary); }
     .btn.active { background: #185FA5; color: #E6F1FB; border-color: #185FA5; }
     .vtog { display: flex; gap: 2px; margin-left: auto; }
-
-    /* Legend */
-    #legend {
-      display: flex; gap: 14px; flex-wrap: wrap;
-      margin-bottom: 14px; font-size: 12px; color: var(--text-secondary);
-    }
+    #legend { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 14px; font-size: 12px; color: var(--text-secondary); }
     .leg { display: flex; align-items: center; gap: 5px; }
     .leg-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
-
-    /* Gantt */
-    #gantt-outer {
-      overflow-x: auto;
-      border: 0.5px solid var(--border);
-      border-radius: var(--radius-lg);
-    }
+    #gantt-outer { overflow-x: auto; border: 0.5px solid var(--border); border-radius: var(--radius-lg); }
     #gantt-inner { min-width: 700px; }
-
-    #gantt-header {
-      display: grid; height: 52px;
-      border-bottom: 0.5px solid var(--border);
-      background: var(--bg-secondary);
-    }
-    .hcell {
-      display: flex; align-items: center; justify-content: center;
-      font-size: 11px; font-weight: 500; color: var(--text-secondary);
-      border-right: 0.5px solid var(--border); padding: 0 4px;
-      text-align: center; line-height: 1.4;
-    }
+    #gantt-header { display: grid; height: 52px; border-bottom: 0.5px solid var(--border); background: var(--bg-secondary); }
+    .hcell { display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; color: var(--text-secondary); border-right: 0.5px solid var(--border); padding: 0 4px; text-align: center; line-height: 1.4; }
     .hcell.label-col { justify-content: flex-start; padding-left: 14px; }
     .hcell:last-child { border-right: none; }
     .hcell.today-hcell { color: #A32D2D; font-weight: 600; }
-
-    .task-row {
-      display: grid; height: 48px;
-      border-bottom: 0.5px solid var(--border);
-      cursor: default; transition: background .15s;
-    }
+    .task-row { display: grid; height: 48px; border-bottom: 0.5px solid var(--border); transition: background .15s; }
     .task-row:last-child { border-bottom: none; }
     .task-row:hover { background: var(--bg-secondary); }
-    .tcell {
-      display: flex; align-items: center;
-      border-right: 0.5px solid var(--border);
-      padding: 0 10px; position: relative; overflow: hidden;
-    }
+    .tcell { display: flex; align-items: center; border-right: 0.5px solid var(--border); padding: 0 10px; position: relative; overflow: hidden; }
     .tcell:last-child { border-right: none; }
     .task-label { font-size: 12px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .task-sub { font-size: 11px; color: var(--text-secondary); margin-top: 1px; white-space: nowrap; }
-    .bar-bg {
-      position: absolute; top: 9px; bottom: 9px;
-      border-radius: 5px; display: flex; align-items: center;
-      padding: 0 8px; font-size: 10px; font-weight: 500;
-      white-space: nowrap; overflow: hidden;
-    }
-    .bar-progress {
-      position: absolute; top: 0; left: 0; bottom: 0;
-      border-radius: 5px; background: white; opacity: .28;
-    }
+    .bar-bg { position: absolute; top: 9px; bottom: 9px; border-radius: 5px; display: flex; align-items: center; padding: 0 8px; font-size: 10px; font-weight: 500; white-space: nowrap; overflow: hidden; }
+    .bar-progress { position: absolute; top: 0; left: 0; bottom: 0; border-radius: 5px; background: white; opacity: .28; }
     .bar-label { position: relative; z-index: 1; }
-    .today-line {
-      position: absolute; top: 0; bottom: 0; width: 1.5px;
-      background: #E24B4A; z-index: 10; pointer-events: none;
-    }
-    .group-hdr {
-      display: flex; align-items: center; gap: 10px;
-      padding: 0 14px; height: 36px;
-      background: var(--bg-secondary);
-      border-bottom: 0.5px solid var(--border);
-      font-size: 12px; font-weight: 500;
-    }
-    .group-badge {
-      font-size: 10px; padding: 2px 9px; border-radius: 10px; font-weight: 500;
-    }
+    .today-line { position: absolute; top: 0; bottom: 0; width: 1.5px; background: #E24B4A; z-index: 10; pointer-events: none; }
+    .group-hdr { display: flex; align-items: center; gap: 10px; padding: 0 14px; height: 36px; background: var(--bg-secondary); border-bottom: 0.5px solid var(--border); font-size: 12px; font-weight: 500; }
+    .group-badge { font-size: 10px; padding: 2px 9px; border-radius: 10px; font-weight: 500; }
     .prio { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-right: 5px; }
     .dep-tag { font-size: 10px; color: var(--text-tertiary); margin-left: 4px; }
-
-    /* Tooltip */
-    #tooltip {
-      position: fixed; background: var(--bg-primary);
-      border: 0.5px solid var(--border-strong);
-      border-radius: var(--radius-md);
-      padding: 10px 14px; font-size: 12px; pointer-events: none;
-      z-index: 999; max-width: 240px; display: none;
-      box-shadow: 0 4px 16px rgba(0,0,0,.10);
-    }
+    #tooltip { position: fixed; background: var(--bg-primary); border: 0.5px solid var(--border-strong); border-radius: var(--radius-md); padding: 10px 14px; font-size: 12px; pointer-events: none; z-index: 999; max-width: 250px; display: none; box-shadow: 0 4px 16px rgba(0,0,0,.10); }
     #tooltip .tt-title { font-size: 13px; font-weight: 500; margin-bottom: 6px; }
     #tooltip .tt-row { display: flex; justify-content: space-between; gap: 12px; color: var(--text-secondary); margin-top: 3px; }
     #tooltip .tt-val { color: var(--text-primary); font-weight: 500; }
     #tooltip .tt-nota { margin-top: 6px; font-size: 11px; color: var(--text-secondary); }
-
-    /* Footer */
-    .page-footer {
-      margin-top: 20px; padding-top: 14px;
-      border-top: 0.5px solid var(--border);
-      font-size: 11px; color: var(--text-tertiary);
-      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px;
-    }
+    .page-footer { margin-top: 16px; padding-top: 12px; border-top: 0.5px solid var(--border); font-size: 11px; color: var(--text-tertiary); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
+    .note { margin-top: 10px; font-size: 11px; color: var(--text-tertiary); }
   </style>
 </head>
 <body>
 <div class="page">
-
   <div class="page-header">
     <div>
-      <h1>Peluche Pollito Kawaii Futbolero — Seguimiento de entrega</h1>
-      <p>Responsable: CIMCA &nbsp;·&nbsp; 2 destinos &nbsp;·&nbsp; 13,000 unidades totales</p>
+      <h1>Peluche Pollito Kawaii Futbolero &mdash; Seguimiento de entrega <span class="auto-badge">Avance autom&aacute;tico</span></h1>
+      <p>Responsable: CIMCA &nbsp;&middot;&nbsp; 2 destinos &nbsp;&middot;&nbsp; 13,000 unidades totales</p>
     </div>
     <div class="header-meta">
       <div id="fecha-doc"></div>
       <div style="margin-top:3px">Fechas tentativas sujetas a cambio</div>
     </div>
   </div>
-
   <div id="summary">
     <div class="stat-card"><div class="stat-num">2</div><div class="stat-lbl">Destinos</div></div>
     <div class="stat-card"><div class="stat-num" style="color:#185FA5">13,000</div><div class="stat-lbl">Unidades totales</div></div>
-    <div class="stat-card"><div class="stat-num" style="color:#185FA5">En proceso</div><div class="stat-lbl">Estado actual</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:#185FA5" id="stat-estado">&mdash;</div><div class="stat-lbl">Etapa activa</div></div>
     <div class="stat-card"><div class="stat-num" style="color:#3B6D11">15 May</div><div class="stat-lbl">Entrega Guatemala</div></div>
     <div class="stat-card"><div class="stat-num" style="color:#534AB7">22 May</div><div class="stat-lbl">Entrega El Salvador</div></div>
   </div>
-
   <div id="toolbar">
     <div id="legend">
       <div class="leg"><div class="leg-dot" style="background:#185FA5"></div>En proceso</div>
       <div class="leg"><div class="leg-dot" style="background:#3B6D11"></div>Completado</div>
       <div class="leg"><div class="leg-dot" style="background:#BA7517"></div>Cargue / Traslado</div>
-      <div class="leg"><div class="leg-dot" style="background:#1D9E75"></div>Tránsito marítimo</div>
-      <div class="leg"><div class="leg-dot" style="background:#534AB7"></div>Desaduanaje / Entrega</div>
-      <div class="leg"><div class="leg-dot" style="background:#5F5E5A"></div>Pendiente</div>
+      <div class="leg"><div class="leg-dot" style="background:#1D9E75"></div>Tr&aacute;nsito mar&iacute;timo</div>
+      <div class="leg"><div class="leg-dot" style="background:#534AB7"></div>Desaduanaje / Entrega GT &nbsp;&middot;&nbsp; Tr&aacute;nsito Terrestre ESV</div>
       <div class="leg" style="align-items:center;gap:6px"><div style="width:12px;height:2px;background:#E24B4A;border-radius:1px"></div>Hoy</div>
     </div>
     <div class="vtog">
@@ -225,188 +92,75 @@
       <button class="btn" id="v-month" onclick="setView('month')">Meses</button>
     </div>
   </div>
-
   <div id="gantt-outer"><div id="gantt-inner"></div></div>
-
+  <p class="note">* El avance se calcula autom&aacute;ticamente en base a las fechas planificadas. Si hay cambios en fechas o estados, el documento ser&aacute; actualizado.</p>
   <div class="page-footer">
-    <span>Generado para uso interno — CIMCA</span>
+    <span>Generado para uso interno &mdash; CIMCA</span>
     <span id="footer-date"></span>
   </div>
 </div>
-
 <div id="tooltip"></div>
-
 <script>
-  const TODAY = new Date();
-
-  // Fecha en header y footer
-  const fmtFull = d => d.toLocaleDateString('es-GT', {day:'2-digit', month:'long', year:'numeric'});
-  document.getElementById('fecha-doc').textContent = 'Actualizado: ' + fmtFull(TODAY);
-  document.getElementById('footer-date').textContent = fmtFull(TODAY);
-
-  const TASKS = [
-    // ── GUATEMALA — 8,000 unidades ──────────────────────
-    {
-      id:1, grupo:'Guatemala — 8,000 unidades', grupoColor:'#0C447C', grupoText:'#E6F1FB', grupoBadge:'8,000 uds',
-      etapa:'Producción', responsable:'CIMCA',
-      inicio:'2026-02-03', fin:'2026-04-05',
-      estado:'En proceso', avance:72, depende:null,
-      color:'#185FA5', textColor:'#E6F1FB',
-      nota:'Producción en fábrica CIMCA. Fin estimado: 5 Abr.'
-    },
-    {
-      id:2, grupo:'Guatemala — 8,000 unidades', grupoColor:'#0C447C', grupoText:'#E6F1FB', grupoBadge:'8,000 uds',
-      etapa:'Cargue en fábrica', responsable:'CIMCA',
-      inicio:'2026-04-06', fin:'2026-04-06',
-      estado:'Pendiente', avance:0, depende:1,
-      color:'#BA7517', textColor:'#FAEEDA',
-      nota:'Cargue de contenedor en fábrica. 6 Abr.'
-    },
-    {
-      id:3, grupo:'Guatemala — 8,000 unidades', grupoColor:'#0C447C', grupoText:'#E6F1FB', grupoBadge:'8,000 uds',
-      etapa:'Envío a puerto Shenzhen', responsable:'CIMCA',
-      inicio:'2026-04-06', fin:'2026-04-12',
-      estado:'Pendiente', avance:0, depende:2,
-      color:'#854F0B', textColor:'#FAEEDA',
-      nota:'Traslado desde fábrica al puerto de Shenzhen, China. 6–12 Abr.'
-    },
-    {
-      id:4, grupo:'Guatemala — 8,000 unidades', grupoColor:'#0C447C', grupoText:'#E6F1FB', grupoBadge:'8,000 uds',
-      etapa:'Tránsito marítimo', responsable:'CIMCA',
-      inicio:'2026-04-12', fin:'2026-05-09',
-      estado:'Pendiente', avance:0, depende:3,
-      color:'#1D9E75', textColor:'#E1F5EE',
-      nota:'Zarpe desde Shenzhen: 12 Abr (tentativo) · Arribo: 9 May (tentativo)'
-    },
-    {
-      id:5, grupo:'Guatemala — 8,000 unidades', grupoColor:'#0C447C', grupoText:'#E6F1FB', grupoBadge:'8,000 uds',
-      etapa:'Desaduanaje y entrega', responsable:'CIMCA',
-      inicio:'2026-05-09', fin:'2026-05-15',
-      estado:'Pendiente', avance:0, depende:4,
-      color:'#534AB7', textColor:'#EEEDFE',
-      nota:'~5 días de desaduanaje. Entrega en bodega cliente: 15 May.'
-    },
-    // ── EL SALVADOR — 5,000 unidades ────────────────────
-    {
-      id:6, grupo:'El Salvador — 5,000 unidades', grupoColor:'#27500A', grupoText:'#EAF3DE', grupoBadge:'5,000 uds',
-      etapa:'Producción', responsable:'CIMCA',
-      inicio:'2026-02-03', fin:'2026-04-05',
-      estado:'En proceso', avance:72, depende:null,
-      color:'#185FA5', textColor:'#E6F1FB',
-      nota:'Producción en fábrica CIMCA (compartida con GT). Fin estimado: 5 Abr.'
-    },
-    {
-      id:7, grupo:'El Salvador — 5,000 unidades', grupoColor:'#27500A', grupoText:'#EAF3DE', grupoBadge:'5,000 uds',
-      etapa:'Cargue en fábrica', responsable:'CIMCA',
-      inicio:'2026-04-06', fin:'2026-04-06',
-      estado:'Pendiente', avance:0, depende:6,
-      color:'#BA7517', textColor:'#FAEEDA',
-      nota:'Cargue de contenedor en fábrica. 6 Abr.'
-    },
-    {
-      id:8, grupo:'El Salvador — 5,000 unidades', grupoColor:'#27500A', grupoText:'#EAF3DE', grupoBadge:'5,000 uds',
-      etapa:'Envío a puerto Shenzhen', responsable:'CIMCA',
-      inicio:'2026-04-06', fin:'2026-04-12',
-      estado:'Pendiente', avance:0, depende:7,
-      color:'#854F0B', textColor:'#FAEEDA',
-      nota:'Traslado desde fábrica al puerto de Shenzhen, China. 6–12 Abr.'
-    },
-    {
-      id:9, grupo:'El Salvador — 5,000 unidades', grupoColor:'#27500A', grupoText:'#EAF3DE', grupoBadge:'5,000 uds',
-      etapa:'Tránsito marítimo', responsable:'CIMCA',
-      inicio:'2026-04-12', fin:'2026-05-09',
-      estado:'Pendiente', avance:0, depende:8,
-      color:'#1D9E75', textColor:'#E1F5EE',
-      nota:'Zarpe desde Shenzhen: 12 Abr (tentativo) · Arribo: 9 May (tentativo)'
-    },
-    {
-      id:10, grupo:'El Salvador — 5,000 unidades', grupoColor:'#27500A', grupoText:'#EAF3DE', grupoBadge:'5,000 uds',
-      etapa:'Desaduanaje y entrega', responsable:'CIMCA',
-      inicio:'2026-05-09', fin:'2026-05-22',
-      estado:'Pendiente', avance:0, depende:9,
-      color:'#534AB7', textColor:'#EEEDFE',
-      nota:'~5 días desaduanaje + 1 semana adicional. Entrega en bodega cliente: 22 May.'
-    },
+  const TODAY=new Date();TODAY.setHours(0,0,0,0);
+  const fmtFull=d=>d.toLocaleDateString('es-GT',{day:'2-digit',month:'long',year:'numeric'});
+  document.getElementById('fecha-doc').textContent='Actualizado: '+fmtFull(TODAY);
+  document.getElementById('footer-date').textContent=fmtFull(TODAY);
+  function parseDate(s){const[y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d);}
+  function addDays(d,n){const r=new Date(d);r.setDate(r.getDate()+n);return r;}
+  function diffDays(a,b){return Math.round((b-a)/(1000*60*60*24));}
+  function fmtDate(d){return d.toLocaleDateString('es-GT',{day:'2-digit',month:'short'});}
+  function startOfWeek(d){const r=new Date(d);r.setDate(r.getDate()-r.getDay()+1);r.setHours(0,0,0,0);return r;}
+  function startOfMonth(d){return new Date(d.getFullYear(),d.getMonth(),1);}
+  function calcAvance(i,f){const s=parseDate(i),e=parseDate(f);if(TODAY<s)return{avance:0,estado:'Pendiente'};if(TODAY>e)return{avance:100,estado:'Completado'};const t=diffDays(s,e)||1,el=diffDays(s,TODAY);return{avance:Math.min(Math.round((el/t)*100),100),estado:'En proceso'};}
+  const BASE=[
+    {id:1,grupo:'Guatemala \u2014 8,000 unidades',grupoColor:'#0C447C',grupoText:'#E6F1FB',grupoBadge:'8,000 uds',etapa:'Producci\u00f3n',responsable:'CIMCA',inicio:'2026-02-03',fin:'2026-04-05',depende:null,color:'#185FA5',textColor:'#E6F1FB',nota:'Producci\u00f3n en f\u00e1brica. Fin estimado: 5 Abr.'},
+    {id:2,grupo:'Guatemala \u2014 8,000 unidades',grupoColor:'#0C447C',grupoText:'#E6F1FB',grupoBadge:'8,000 uds',etapa:'Cargue en f\u00e1brica',responsable:'CIMCA',inicio:'2026-04-06',fin:'2026-04-06',depende:1,color:'#BA7517',textColor:'#FAEEDA',nota:'Cargue de contenedor en f\u00e1brica. 6 Abr.'},
+    {id:3,grupo:'Guatemala \u2014 8,000 unidades',grupoColor:'#0C447C',grupoText:'#E6F1FB',grupoBadge:'8,000 uds',etapa:'Env\u00edo a puerto Shenzhen',responsable:'CIMCA',inicio:'2026-04-06',fin:'2026-04-12',depende:2,color:'#854F0B',textColor:'#FAEEDA',nota:'Traslado desde f\u00e1brica al puerto de Shenzhen, China. 6\u201312 Abr.'},
+    {id:4,grupo:'Guatemala \u2014 8,000 unidades',grupoColor:'#0C447C',grupoText:'#E6F1FB',grupoBadge:'8,000 uds',etapa:'Tr\u00e1nsito mar\u00edtimo',responsable:'CIMCA',inicio:'2026-04-12',fin:'2026-05-09',depende:3,color:'#1D9E75',textColor:'#E1F5EE',nota:'Zarpe desde Shenzhen: 12 Abr (tentativo) \u00b7 Arribo: 9 May (tentativo)'},
+    {id:5,grupo:'Guatemala \u2014 8,000 unidades',grupoColor:'#0C447C',grupoText:'#E6F1FB',grupoBadge:'8,000 uds',etapa:'Desaduanaje y entrega',responsable:'CIMCA',inicio:'2026-05-09',fin:'2026-05-15',depende:4,color:'#534AB7',textColor:'#EEEDFE',nota:'~5 d\u00edas de desaduanaje. Entrega en bodega cliente: 15 May.'},
+    {id:6,grupo:'El Salvador \u2014 5,000 unidades',grupoColor:'#27500A',grupoText:'#EAF3DE',grupoBadge:'5,000 uds',etapa:'Producci\u00f3n',responsable:'CIMCA',inicio:'2026-02-03',fin:'2026-04-05',depende:null,color:'#185FA5',textColor:'#E6F1FB',nota:'Producci\u00f3n en f\u00e1brica. Fin estimado: 5 Abr.'},
+    {id:7,grupo:'El Salvador \u2014 5,000 unidades',grupoColor:'#27500A',grupoText:'#EAF3DE',grupoBadge:'5,000 uds',etapa:'Cargue en f\u00e1brica',responsable:'CIMCA',inicio:'2026-04-06',fin:'2026-04-06',depende:6,color:'#BA7517',textColor:'#FAEEDA',nota:'Cargue de contenedor en f\u00e1brica. 6 Abr.'},
+    {id:8,grupo:'El Salvador \u2014 5,000 unidades',grupoColor:'#27500A',grupoText:'#EAF3DE',grupoBadge:'5,000 uds',etapa:'Env\u00edo a puerto Shenzhen',responsable:'CIMCA',inicio:'2026-04-06',fin:'2026-04-12',depende:7,color:'#854F0B',textColor:'#FAEEDA',nota:'Traslado desde f\u00e1brica al puerto de Shenzhen, China. 6\u201312 Abr.'},
+    {id:9,grupo:'El Salvador \u2014 5,000 unidades',grupoColor:'#27500A',grupoText:'#EAF3DE',grupoBadge:'5,000 uds',etapa:'Tr\u00e1nsito mar\u00edtimo',responsable:'CIMCA',inicio:'2026-04-12',fin:'2026-05-09',depende:8,color:'#1D9E75',textColor:'#E1F5EE',nota:'Zarpe desde Shenzhen: 12 Abr (tentativo) \u00b7 Arribo: 9 May (tentativo)'},
+    {id:10,grupo:'El Salvador \u2014 5,000 unidades',grupoColor:'#27500A',grupoText:'#EAF3DE',grupoBadge:'5,000 uds',etapa:'Tr\u00e1nsito Terrestre y Entrega ESV',responsable:'CIMCA',inicio:'2026-05-09',fin:'2026-05-22',depende:9,color:'#534AB7',textColor:'#EEEDFE',nota:'Tr\u00e1nsito terrestre desde puerto + entrega en bodega cliente El Salvador: 22 May.'},
   ];
-
-  let viewMode = 'week';
-
-  function parseDate(s){ const [y,m,d]=s.split('-').map(Number); return new Date(y,m-1,d); }
-  function addDays(d,n){ const r=new Date(d); r.setDate(r.getDate()+n); return r; }
-  function diffDays(a,b){ return Math.round((b-a)/(1000*60*60*24)); }
-  function fmtDate(d){ return d.toLocaleDateString('es-GT',{day:'2-digit',month:'short'}); }
-  function startOfWeek(d){ const r=new Date(d); r.setDate(r.getDate()-r.getDay()+1); r.setHours(0,0,0,0); return r; }
-  function startOfMonth(d){ return new Date(d.getFullYear(),d.getMonth(),1); }
-
-  function setView(v){
-    viewMode=v;
-    document.getElementById('v-week').classList.toggle('active',v==='week');
-    document.getElementById('v-month').classList.toggle('active',v==='month');
-    renderGantt();
-  }
-
+  const TASKS=BASE.map(t=>{const{avance,estado}=calcAvance(t.inicio,t.fin);return{...t,avance,estado};});
+  const act=TASKS.find(t=>t.estado==='En proceso');
+  document.getElementById('stat-estado').textContent=act?act.etapa:(TASKS.every(t=>t.estado==='Completado')?'Completado':'Pendiente');
+  let viewMode='week';
+  function setView(v){viewMode=v;document.getElementById('v-week').classList.toggle('active',v==='week');document.getElementById('v-month').classList.toggle('active',v==='month');renderGantt();}
   function renderGantt(){
-    const allS=TASKS.map(t=>parseDate(t.inicio));
-    const allE=TASKS.map(t=>parseDate(t.fin));
-    const minDate=new Date(Math.min(...allS));
-    const maxDate=new Date(Math.max(...allE));
-
+    const allS=TASKS.map(t=>parseDate(t.inicio)),allE=TASKS.map(t=>parseDate(t.fin));
+    const minDate=new Date(Math.min(...allS)),maxDate=new Date(Math.max(...allE));
     let cols=[];
-    if(viewMode==='week'){
-      let cur=startOfWeek(minDate);
-      while(cur<=maxDate){ const end=addDays(cur,6); cols.push({label:fmtDate(cur)+'\n'+fmtDate(end),start:new Date(cur),end}); cur=addDays(cur,7); }
-    } else {
-      let cur=startOfMonth(minDate);
-      while(cur<=maxDate){ const end=new Date(cur.getFullYear(),cur.getMonth()+1,0); cols.push({label:cur.toLocaleDateString('es-GT',{month:'long',year:'2-digit'}),start:new Date(cur),end}); cur=new Date(cur.getFullYear(),cur.getMonth()+1,1); }
-    }
-
-    const nCols=cols.length;
-    const COL_W=viewMode==='week'?82:120;
-    const LABEL_W=230;
+    if(viewMode==='week'){let cur=startOfWeek(minDate);while(cur<=maxDate){const end=addDays(cur,6);cols.push({label:fmtDate(cur)+'\n'+fmtDate(end),start:new Date(cur),end});cur=addDays(cur,7);}}
+    else{let cur=startOfMonth(minDate);while(cur<=maxDate){const end=new Date(cur.getFullYear(),cur.getMonth()+1,0);cols.push({label:cur.toLocaleDateString('es-GT',{month:'long',year:'2-digit'}),start:new Date(cur),end});cur=new Date(cur.getFullYear(),cur.getMonth()+1,1);}}
+    const nCols=cols.length,COL_W=viewMode==='week'?82:120,LABEL_W=230;
     const gridCols=`${LABEL_W}px repeat(${nCols},${COL_W}px)`;
-    const tlStart=cols[0].start;
-    const tlEnd=addDays(cols[nCols-1].end,1);
-    const tlDays=diffDays(tlStart,tlEnd);
+    const tlStart=cols[0].start,tlEnd=addDays(cols[nCols-1].end,1),tlDays=diffDays(tlStart,tlEnd);
     const todayPct=(diffDays(tlStart,TODAY)/tlDays)*100;
-
     let html=`<div id="gantt-header" style="grid-template-columns:${gridCols}"><div class="hcell label-col">Etapa / Responsable</div>`;
-    cols.forEach(c=>{
-      const parts=c.label.split('\n');
-      const isTod=TODAY>=c.start&&TODAY<=c.end;
-      html+=`<div class="hcell${isTod?' today-hcell':''}">${parts.map(p=>`<span style="display:block">${p}</span>`).join('')}</div>`;
-    });
+    cols.forEach(c=>{const parts=c.label.split('\n');const isTod=TODAY>=c.start&&TODAY<=c.end;html+=`<div class="hcell${isTod?' today-hcell':''}">${parts.map(p=>`<span style="display:block">${p}</span>`).join('')}</div>`;});
     html+='</div>';
-
     const groups={};
-    TASKS.forEach(t=>{ if(!groups[t.grupo]) groups[t.grupo]=[]; groups[t.grupo].push(t); });
-
+    TASKS.forEach(t=>{if(!groups[t.grupo])groups[t.grupo]=[];groups[t.grupo].push(t);});
     Object.entries(groups).forEach(([gname,tasks])=>{
       const g=tasks[0];
-      html+=`<div style="display:grid;grid-template-columns:${gridCols};background:var(--bg-secondary);border-bottom:0.5px solid var(--border);">
-        <div class="group-hdr" style="grid-column:1/-1">
-          <span style="font-size:11px;font-weight:500;color:var(--text-secondary)">${gname}</span>
-          <span class="group-badge" style="background:${g.grupoColor};color:${g.grupoText}">${g.grupoBadge}</span>
-        </div></div>`;
-
+      html+=`<div style="display:grid;grid-template-columns:${gridCols};background:var(--bg-secondary);border-bottom:0.5px solid var(--border);"><div class="group-hdr" style="grid-column:1/-1"><span style="font-size:11px;font-weight:500;color:var(--text-secondary)">${gname}</span><span class="group-badge" style="background:${g.grupoColor};color:${g.grupoText}">${g.grupoBadge}</span></div></div>`;
       tasks.forEach(task=>{
-        const tS=parseDate(task.inicio), tE=parseDate(task.fin);
-        const leftPct=(diffDays(tlStart,tS)/tlDays)*100;
-        const widthPct=(diffDays(tS,addDays(tE,1))/tlDays)*100;
-        const depTag=task.depende?`<span class="dep-tag">← #${task.depende}</span>`:'';
-        const barLabel=task.avance>0?task.avance+'%':fmtDate(tS)+(diffDays(tS,tE)>0?' → '+fmtDate(tE):'');
-
-        html+=`<div class="task-row" style="grid-template-columns:${gridCols}"
-          onmouseenter="showTT(event,${task.id})" onmouseleave="hideTT()">
+        const tS=parseDate(task.inicio),tE=parseDate(task.fin);
+        const leftPct=(diffDays(tlStart,tS)/tlDays)*100,widthPct=(diffDays(tS,addDays(tE,1))/tlDays)*100;
+        const depTag=task.depende?`<span class="dep-tag">\u2190 #${task.depende}</span>`:'';
+        const barLabel=task.avance>0?`${task.avance}%`:fmtDate(tS)+(diffDays(tS,tE)>0?` \u2192 ${fmtDate(tE)}`:'');
+        const barColor=task.estado==='Completado'?'#3B6D11':task.color;
+        html+=`<div class="task-row" style="grid-template-columns:${gridCols}" onmouseenter="showTT(event,${task.id})" onmouseleave="hideTT()">
           <div class="tcell" style="flex-direction:column;align-items:flex-start;padding:4px 14px;gap:1px">
-            <div style="display:flex;align-items:center;width:100%">
-              <div class="prio" style="background:${task.color}"></div>
-              <div class="task-label">${task.etapa}</div>${depTag}
-            </div>
-            <div class="task-sub">${task.responsable} · ${task.estado}</div>
+            <div style="display:flex;align-items:center;width:100%"><div class="prio" style="background:${barColor}"></div><div class="task-label">${task.etapa}</div>${depTag}</div>
+            <div class="task-sub">${task.responsable} &middot; ${task.estado}</div>
           </div>
           <div class="tcell" style="grid-column:2/-1;position:relative;padding:0;">
             <div class="today-line" style="left:${todayPct}%"></div>
-            <div class="bar-bg" style="left:calc(${leftPct}% + 2px);width:calc(${widthPct}% - 4px);background:${task.color};color:${task.textColor};">
+            <div class="bar-bg" style="left:calc(${leftPct}% + 2px);width:calc(${widthPct}% - 4px);background:${barColor};color:${task.textColor};">
               <div class="bar-progress" style="width:${task.avance}%"></div>
               <span class="bar-label">${barLabel}</span>
             </div>
@@ -414,26 +168,23 @@
         </div>`;
       });
     });
-
     document.getElementById('gantt-inner').innerHTML=html;
   }
-
   function showTT(e,id){
-    const t=TASKS.find(x=>x.id===id); if(!t) return;
+    const t=TASKS.find(x=>x.id===id);if(!t)return;
     const tt=document.getElementById('tooltip');
     tt.innerHTML=`<div class="tt-title">${t.etapa}</div>
-      <div class="tt-row"><span>Destino</span><span class="tt-val">${t.grupo.split('—')[0].trim()}</span></div>
+      <div class="tt-row"><span>Destino</span><span class="tt-val">${t.grupo.split('\u2014')[0].trim()}</span></div>
       <div class="tt-row"><span>Inicio</span><span class="tt-val">${t.inicio}</span></div>
       <div class="tt-row"><span>Fin est.</span><span class="tt-val">${t.fin}</span></div>
-      <div class="tt-row"><span>Estado</span><span class="tt-val" style="color:${t.color}">${t.estado}</span></div>
-      ${t.avance>0?`<div class="tt-row"><span>Avance</span><span class="tt-val">${t.avance}%</span></div>`:''}
+      <div class="tt-row"><span>Estado</span><span class="tt-val" style="color:${t.estado==='Completado'?'#3B6D11':t.color}">${t.estado}</span></div>
+      <div class="tt-row"><span>Avance</span><span class="tt-val">${t.avance}% <span style="color:#3B6D11;font-size:10px">\u2713 autom\u00e1tico</span></span></div>
       <div class="tt-nota">${t.nota}</div>`;
     tt.style.display='block';
-    tt.style.left=Math.min(e.clientX+16,window.innerWidth-260)+'px';
+    tt.style.left=Math.min(e.clientX+16,window.innerWidth-270)+'px';
     tt.style.top=(e.clientY-10)+'px';
   }
-  function hideTT(){ document.getElementById('tooltip').style.display='none'; }
-
+  function hideTT(){document.getElementById('tooltip').style.display='none';}
   renderGantt();
 </script>
 </body>
